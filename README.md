@@ -164,5 +164,3 @@ Python, scikit-learn, pandas, NumPy (training) · JavaScript, Chrome Extension M
 - Verification is best-effort: no search results does not prove a posting is fake.
 - The Chrome extension needs Chrome 114+ or a recent Edge; Firefox is not supported as-is.
 
-## Author
-Mani — Anurag University
