@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>TruePlacement</title>
+<link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="topbar">
+    <img class="topbar-logo" src="icons/icon48.png" alt="" />
+    <div class="topbar-text">
+      <span class="topbar-name">TruePlacement</span>
+      <span class="topbar-tag">Wording model runs on-device &middot; AI check is optional</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="check" role="tab" aria-selected="true">Check posting</button>
+    <button class="tab" data-tab="history" role="tab" aria-selected="false">History</button>
+  </nav>
+
+  <div class="tip-banner">
+    Select text on any page to check it instantly &mdash; no need to open this panel first.
+  </div>
+
+  <main id="panel-check" class="panel-view">
+    <section class="panel">
+      <div class="panel-row">
+        <h3>Job posting</h3>
+        <button id="btn-clear" class="link-btn">Clear</button>
+      </div>
+
+      <label class="field-label" for="field-title">Job title</label>
+      <input id="field-title" class="field-input" type="text" placeholder="e.g. Software Engineering Intern" />
+
+      <label class="field-label" for="field-company">Company <span class="optional">optional, sharpens the AI check</span></label>
+      <input id="field-company" class="field-input" type="text" placeholder="e.g. Acme Corp" />
+
+      <label class="field-label" for="field-location">Location <span class="optional">optional</span></label>
+      <input id="field-location" class="field-input" type="text" placeholder="e.g. Hyderabad, India / Remote" />
+
+      <label class="field-label" for="field-desc">Description</label>
+      <textarea id="field-desc" class="field-textarea" rows="9"
+        placeholder="Paste the job description, requirements, or recruiter message — or drag-select text from a page and drop it here."></textarea>
+
+      <details class="meta-details">
+        <summary>Add more context <span class="optional">optional</span></summary>
+        <p class="meta-caption">Only check what you've actually observed &mdash; leave the rest unchecked.</p>
+        <label class="checkbox-row"><input type="checkbox" id="chk-remote" /> Remote / telecommuting job</label>
+        <label class="checkbox-row"><input type="checkbox" id="chk-logo" /> Company logo present</label>
+        <label class="checkbox-row"><input type="checkbox" id="chk-questions" /> Screening questions present</label>
+      </details>
+
+      <button id="btn-analyze" class="btn-primary">Analyze</button>
+    </section>
+
+    <section id="result-area"></section>
+  </main>
+
+  <main id="panel-history" class="panel-view" hidden>
+    <section class="panel">
+      <div class="panel-row"><h3>History</h3></div>
+      <p class="meta-caption" id="history-empty">Postings you check will appear here.</p>
+      <div id="history-list"></div>
+      <button id="btn-clear-history" class="link-btn" hidden>Clear history</button>
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <span id="footer-model-status">On-device model + AI verification</span> &middot;
+    <button id="btn-ai-settings" class="link-btn footer-link-btn">AI backend settings</button>
+  </footer>
+
+  <script src="lib/model.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

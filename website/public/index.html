@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>TruePlacement — Is that job posting real?</title>
+<meta name="description" content="Paste a job or internship posting and get an instant fraud verdict, on-device — plus an AI check for whether the opening actually exists." />
+<link rel="icon" type="image/png" href="icons/icon32.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="noise-layer" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="#top">
+    <img class="brand-mark" src="icons/icon48.png" width="28" height="28" alt="" />
+    <span class="brand-name">TruePlacement</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#scan">Analyze a posting</a>
+    <a href="#extension">Extension</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="hero-eyebrow">Free &middot; runs in your browser &middot; nothing you paste is uploaded</p>
+    <h1>Before you apply, know if it's <em>real</em>.</h1>
+    <p class="hero-sub">
+      Paste any job or internship posting below. TruePlacement scores it for fraud
+      signals on-device in under a second, then — if you want a second opinion —
+      an AI-assisted check searches the open web for whether the company actually
+      has this opening posted anywhere real.
+    </p>
+    <div class="hero-actions">
+      <a href="#scan" class="btn btn-primary">Analyze a posting</a>
+      <a href="#extension" class="btn btn-ghost">Get the browser extension</a>
+    </div>
+  </section>
+
+  <!-- ============================================================ SCAN === -->
+  <section id="scan" class="panel-section">
+    <div class="panel-section-head">
+      <h2>Analyze a posting <span class="badge-ai">model + AI, together</span></h2>
+      <p>One check, two independent signals combined into a single verdict: an
+        on-device model scores how the posting is <em>written</em> (that part
+        never leaves your device), while an AI-assisted check reads the same
+        text plus a public-evidence search to judge whether the opening itself
+        holds up — official careers page, job boards, or public scam reports.
+        The posting text and any company/role you add are sent to the server
+        for that second check.</p>
+    </div>
+
+    <div class="scan-grid">
+      <form id="scan-form" class="card form-card" autocomplete="off">
+        <div class="field-row two-col">
+          <div class="field">
+            <label for="field-title">Job title <span class="optional">optional</span></label>
+            <input id="field-title" type="text" placeholder="e.g. Software Engineering Intern" />
+          </div>
+          <div class="field">
+            <label for="field-company">Company <span class="optional">optional, sharpens the AI check</span></label>
+            <input id="field-company" type="text" placeholder="e.g. Acme Corp" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="field-location">Location <span class="optional">optional</span></label>
+          <input id="field-location" type="text" placeholder="e.g. Hyderabad, India / Remote" />
+        </div>
+
+        <div class="field">
+          <label for="field-desc">Posting text</label>
+          <textarea id="field-desc" rows="10" placeholder="Paste the job description, requirements, or the recruiter's message here…"></textarea>
+        </div>
+
+        <details class="meta-details">
+          <summary>Add more context <span class="optional">optional</span></summary>
+          <p class="meta-caption">Only check what you've actually observed — leave the rest unchecked.</p>
+          <label class="checkbox-row"><input type="checkbox" id="chk-remote" /> Remote / telecommuting job</label>
+          <label class="checkbox-row"><input type="checkbox" id="chk-logo" /> Company logo present on the listing</label>
+          <label class="checkbox-row"><input type="checkbox" id="chk-questions" /> Screening questions present</label>
+        </details>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="btn-analyze">Analyze</button>
+          <button type="button" class="btn btn-text" id="btn-clear">Clear</button>
+          <span class="model-status" id="model-status">Loading model…</span>
+        </div>
+      </form>
+
+      <div id="scan-result" class="card result-card result-empty">
+        <p class="result-placeholder">Your combined verdict will appear here — on-device
+          wording analysis plus an AI read of the text and (if you add a company) public evidence.</p>
+      </div>
+    </div>
+
+    <section class="history-section">
+      <div class="history-head">
+        <h3>Your recent scans</h3>
+        <button id="btn-clear-history" class="btn btn-text" hidden>Clear</button>
+      </div>
+      <p class="meta-caption" id="history-empty">Postings you check will appear here — stored only on this device.</p>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </section>
+
+  <!-- ======================================================= EXTENSION === -->
+  <section id="extension" class="panel-section extension-cta">
+    <div class="panel-section-head">
+      <h2>Prefer to scan as you browse?</h2>
+      <p>The TruePlacement browser extension runs the same on-device model directly on
+        job boards and email — select any text on a page and get a verdict without
+        switching tabs.</p>
+    </div>
+    <div class="ext-features">
+      <div class="ext-feature">
+        <h4>Select-to-scan</h4>
+        <p>Highlight any posting on any site, click "Scan for fraud," done.</p>
+      </div>
+      <div class="ext-feature">
+        <h4>Full workspace</h4>
+        <p>A side panel for drag-and-drop, page scanning, and a local check history.</p>
+      </div>
+      <div class="ext-feature">
+        <h4>100% on-device</h4>
+        <p>Same model as this site — no posting text ever leaves your browser.</p>
+      </div>
+    </div>
+    <div class="ext-open-row">
+      <button id="btn-open-extension" class="btn btn-primary">Open extension</button>
+      <span class="model-status" id="extension-status"></span>
+    </div>
+    <p class="ext-note">Chrome / Edge, Manifest V3. If it's not installed yet: load it unpacked
+      from the project's <code>extension/</code> folder via <code>chrome://extensions</code> →
+      Developer mode → Load unpacked, then click "Open extension" again.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>TruePlacement is a decision-support tool, not a guarantee. Always verify a
+    placement through your college placement cell or the company's official careers page —
+    and never pay a fee to apply for a job.</p>
+  <p class="footer-meta">TF-IDF + Linear SVM, on-device inference &middot; AI verification is best-effort and can be wrong</p>
+</footer>
+
+<script src="lib/model.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

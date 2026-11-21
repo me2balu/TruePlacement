@@ -1,0 +1,19 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# dependencies
+node_modules/
+
+# large dataset (download from Kaggle instead)
+extension/scripts/fake_job_postings.csv
+*.csv
+
+# python / OS / editor
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+.vscode/
